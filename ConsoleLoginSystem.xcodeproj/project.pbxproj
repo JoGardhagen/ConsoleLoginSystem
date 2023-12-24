@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		924FBE0A2B378B110016EAB2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924FBE092B378B110016EAB2 /* main.cpp */; };
 		9278A56C2B3862BA00C5927F /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9278A56B2B38618800C5927F /* User.cpp */; };
+		92A658E32B38AF1D00D36A91 /* UserManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92A658E22B38AAD500D36A91 /* UserManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		924FBE092B378B110016EAB2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9278A56A2B38602A00C5927F /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		9278A56B2B38618800C5927F /* User.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = User.cpp; sourceTree = "<group>"; };
+		92A658E12B38A9DE00D36A91 /* UserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		92A658E22B38AAD500D36A91 /* UserManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UserManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,8 +47,6 @@
 		924FBDFD2B378B110016EAB2 = {
 			isa = PBXGroup;
 			children = (
-				9278A56B2B38618800C5927F /* User.cpp */,
-				9278A56A2B38602A00C5927F /* User.h */,
 				924FBE082B378B110016EAB2 /* ConsoleLoginSystem */,
 				924FBE072B378B110016EAB2 /* Products */,
 			);
@@ -63,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				924FBE092B378B110016EAB2 /* main.cpp */,
+				9278A56B2B38618800C5927F /* User.cpp */,
+				9278A56A2B38602A00C5927F /* User.h */,
+				92A658E12B38A9DE00D36A91 /* UserManager.h */,
+				92A658E22B38AAD500D36A91 /* UserManager.cpp */,
 			);
 			path = ConsoleLoginSystem;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9278A56C2B3862BA00C5927F /* User.cpp in Sources */,
+				92A658E32B38AF1D00D36A91 /* UserManager.cpp in Sources */,
 				924FBE0A2B378B110016EAB2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
