@@ -7,33 +7,8 @@
 
 #include <iostream>
 #include <string>
+#include "User.h"
 
-class User{
-//Constructor
-public:
-    User(const std::string& username,const std::string& password) : username(username), password(password){}
-    
-    //Getter
-    const std::string& getUsername() const {
-            return username;
-        }
-
-    const std::string& getPassword() const {
-            return password;
-        }
-    //Setter
-    void setUsername(const std::string& newUsername){
-        username = newUsername;
-    }
-    void setPassword(const std::string& newPassword){
-        password = newPassword;
-    }
-    
-private:
-    //Attributes
-    std::string username;
-    std::string password;
-};
 
 int main(int argc, const char * argv[]) {
     
