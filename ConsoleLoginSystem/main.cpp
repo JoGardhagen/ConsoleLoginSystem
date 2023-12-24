@@ -12,16 +12,19 @@
 
 int main(int argc, const char * argv[]) {
     
-    User user("Joakim","PassOrd1");// Skapar objekt
+    std::string usernameInput, passwordInput;
     
-    std::cout<<"Användarnamn :" << user.getUsername()<<'\n'; // anropar ObjekMethod
-    std::cout<<"PassOrd : " << user.getPassword()<<'\n'; // anropar ObjekMethod
+    std::cout<< "Username :";
+    std::cin>> usernameInput;
     
-    user.setUsername("NewUserName");
-    user.setPassword("newPassOrd");
+    std::cout<<"Password :";
+    std::cin>>passwordInput;
     
-    std::cout<<"Updated UserName: "<<user.getUsername()<<'\n';
-    std::cout<<"Updated Password: "<<user.getPassword()<<'\n';
+    User user(usernameInput,passwordInput);
+    
+    std::cout<<"User Created:\n";
+    std::cout<<"Username: "<<user.getUsername()<<std::endl;
+    std::cout<<"Password: "<<user.getPassword()<<std::endl;
     
     
     return 0;
