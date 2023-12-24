@@ -1,0 +1,5 @@
+# Ignorera DS_Store-filer
+.DS_Store
+
+# Ignorera build-mappen
+build/
