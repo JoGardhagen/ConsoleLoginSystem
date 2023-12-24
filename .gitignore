@@ -1,5 +1,6 @@
-# Ignorera DS_Store-filer
+# Xcode
 .DS_Store
-
-# Ignorera build-mappen
 build/
+*.xcodeproj/
+!*.xcodeproj/project.pbxproj
+!*.xcworkspace/
