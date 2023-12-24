@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "User.h"
 
 
@@ -22,9 +23,21 @@ int main(int argc, const char * argv[]) {
     
     User user(usernameInput,passwordInput);
     
-    std::cout<<"User Created:\n";
-    std::cout<<"Username: "<<user.getUsername()<<std::endl;
-    std::cout<<"Password: "<<user.getPassword()<<std::endl;
+    std::ofstream outputFile("userDB.txt");
+    
+    if(outputFile.is_open()){
+        outputFile<<"Username: "<<user.getUsername()<<std::endl;
+        outputFile<<"Password: "<<user.getPassword()<<std::endl;
+        
+        outputFile.close();
+        
+        std::cout<<"\nUserInformation has been saved to userDB.txt"<<std::endl;
+    }else{
+        std::cerr<<"Saving to File unsuccessful. . ."<<std::endl;
+    }
+    
+    
+
     
     
     return 0;
