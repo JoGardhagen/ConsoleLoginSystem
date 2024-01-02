@@ -47,24 +47,14 @@ void userPanel(UserManager& usermanager){
 
         } while (choice != 3);
 }
- bool userLogin(UserManager& usermanager){
+bool userLogin(UserManager& usermanager){
     std::string loginUsername,LoginPassword;
-    //bool loggedIn = false;
-    //do{
-        
-        std::cout<<"Enter username for login: ";
-        std::cin>>loginUsername;
-        std::cout<<"Enter password for login: ";
-        std::cin>>LoginPassword;
-        //loggedIn = usermanager.loginUser(loginUsername, LoginPassword);
-        return usermanager.loginUser(loginUsername, LoginPassword);
-        
-       // if(!loggedIn){
-            //std::cout<<"Login failed, try again.\n";
-        //}
-        
-    //} while (!loggedIn);
-    // return loggedIn;
+    std::cout<<"Enter username for login: ";
+    std::cin>>loginUsername;
+    std::cout<<"Enter password for login: ";
+    std::cin>>LoginPassword;
+    return usermanager.loginUser(loginUsername, LoginPassword);
+    
 }
 void registerUser(UserManager& usermanager){
     std::string regUsername,regPassword;
