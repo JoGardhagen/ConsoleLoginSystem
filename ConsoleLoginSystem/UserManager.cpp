@@ -28,7 +28,7 @@ void UserManager::saveUserData(){
     std::ofstream file("userDB.txt",std::ios::app);
     if(file.is_open()){
         for(const auto& user :users){
-            file << user.getUsername()<< " " << user.getPassword()<< "\n";
+            file << user.getUsername()<< " " << user.getPassword()<<" "<<user.getDateCreated()<<"\n";
         }
         std::cout<<"User successfully registrated!"<<std::endl;
         file.close();

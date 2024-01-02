@@ -17,12 +17,15 @@ public:
     
     const std::string& getUsername() const;
     const std::string& getPassword() const;
+    const std::string& getDateCreated() const;
+    
     void setUsername(const std::string& newUsername);
     void setPassword(const std::string& newPassword);
     
 private:
     std::string username;
     std::string password;
+    std::string dateCreated;
 };
 
 #endif /* User_h */
