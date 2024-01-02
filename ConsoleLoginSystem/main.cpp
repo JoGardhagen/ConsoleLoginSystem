@@ -9,7 +9,17 @@
 #include "UserManager.h"
 
 
-
+int menu(UserManager usermanager){
+    int choice;
+    
+    std::cout<<"Menu:\n";
+    std::cout<<"1: Register\n";
+    std::cout<<"2: Login\n";
+    std::cout<<"3: Exit\n";
+    std::cout<<"Enter your choice:";
+    std::cin>>choice;
+    return choice;
+}
 
 int main(int argc, const char * argv[]) {
     
@@ -17,12 +27,7 @@ int main(int argc, const char * argv[]) {
     int choice;
     bool loggedIn = false;
     do {
-        std::cout<<"Menu:\n";
-        std::cout<<"1: Register\n";
-        std::cout<<"2: Login\n";
-        std::cout<<"3: Exit\n";
-        std::cout<<"Enter your choice:";
-        std::cin>>choice;
+        choice =menu(usermanager);
     
         switch(choice){
             case 1:{
