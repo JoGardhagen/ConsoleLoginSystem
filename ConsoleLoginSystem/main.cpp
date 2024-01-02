@@ -9,7 +9,7 @@
 #include "UserManager.h"
 
 
-int menu(UserManager usermanager){
+int menu(UserManager& usermanager){
     int choice;
     
     std::cout<<"Menu:\n";
@@ -21,7 +21,7 @@ int menu(UserManager usermanager){
     return choice;
 }
 
-void userPanel(UserManager usermanager){
+void userPanel(UserManager& usermanager){
     int choice;
     do {
             std::cout << "\nDashboard:\n";
@@ -47,39 +47,51 @@ void userPanel(UserManager usermanager){
 
         } while (choice != 3);
 }
+ bool userLogin(UserManager& usermanager){
+    std::string loginUsername,LoginPassword;
+    //bool loggedIn = false;
+    //do{
+        
+        std::cout<<"Enter username for login: ";
+        std::cin>>loginUsername;
+        std::cout<<"Enter password for login: ";
+        std::cin>>LoginPassword;
+        //loggedIn = usermanager.loginUser(loginUsername, LoginPassword);
+        return usermanager.loginUser(loginUsername, LoginPassword);
+        
+       // if(!loggedIn){
+            //std::cout<<"Login failed, try again.\n";
+        //}
+        
+    //} while (!loggedIn);
+    // return loggedIn;
+}
+void registerUser(UserManager& usermanager){
+    std::string regUsername,regPassword;
+    std::cout<< "Enter username for registration: ";
+    std::cin>>regUsername;
+    std::cout<<"Enter password for registration: ";
+    std::cin>>regPassword;
+    usermanager.registerUser(regUsername, regPassword);
+    std::cout<<"Saved";
+}
 
 int main(int argc, const char * argv[]) {
     
     UserManager usermanager;
     int choice;
-    bool loggedIn = false;
+
     do {
         choice =menu(usermanager);
     
         switch(choice){
             case 1:{
-                std::string regUsername,regPassword;
-                std::cout<< "Enter username for registration: ";
-                std::cin>>regUsername;
-                std::cout<<"Enter password for registration: ";
-                std::cin>>regPassword;
-                usermanager.registerUser(regUsername, regPassword);
+                registerUser(usermanager);
                 break;
             }
             case 2:{
-                do{
-                    std::string loginUsername,LoginPassword;
-                    std::cout<<"Enter username for login: ";
-                    std::cin>>loginUsername;
-                    std::cout<<"Enter password for login: ";
-                    std::cin>>LoginPassword;
-                    loggedIn = usermanager.loginUser(loginUsername, LoginPassword);
-                    
-                    if(!loggedIn){
-                        std::cout<<"Login failed, try again.\n";
-                    }
-                } while (!loggedIn);
                 
+                userLogin(usermanager);
                 userPanel(usermanager);
                 break;
             }
