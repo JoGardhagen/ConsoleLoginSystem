@@ -21,6 +21,33 @@ int menu(UserManager usermanager){
     return choice;
 }
 
+void userPanel(UserManager usermanager){
+    int choice;
+    do {
+            std::cout << "\nDashboard:\n";
+            std::cout << "1. View Profile\n";
+            std::cout << "2. Change Password\n";
+            std::cout << "3. Logout\n";
+            std::cout << "Enter your choice: ";
+            std::cin >> choice;
+
+            switch (choice) {
+                case 1:
+                    std::cout << "Viewing profile...\n";
+                    break;
+                case 2:
+                    std::cout << "Changing password...\n";
+                    break;
+                case 3:
+                    std::cout << "Logging out...\n";
+                    break;
+                default:
+                    std::cout << "Invalid choice. Please try again.\n";
+            }
+
+        } while (choice != 3);
+}
+
 int main(int argc, const char * argv[]) {
     
     UserManager usermanager;
@@ -53,29 +80,7 @@ int main(int argc, const char * argv[]) {
                     }
                 } while (!loggedIn);
                 
-                do {
-                    std::cout << "\nDashboard:\n";
-                    std::cout << "1. View Profile\n";
-                    std::cout << "2. Change Password\n";
-                    std::cout << "3. Logout\n";
-                    std::cout << "Enter your choice: ";
-                    std::cin >> choice;
-                    
-                    switch (choice) {
-                        case 1:
-                            std::cout << "Viewing profile...\n";
-                            break;
-                        case 2:
-                            std::cout << "Changing password...\n";
-                            break;
-                        case 3:
-                            std::cout << "Logging out...\n";
-                            break;
-                        default:
-                            std::cout << "Invalid choice. Please try again.\n";
-                    }
-                    
-                }while (choice != 3);
+                userPanel(usermanager);
                 break;
             }
             case 3:
