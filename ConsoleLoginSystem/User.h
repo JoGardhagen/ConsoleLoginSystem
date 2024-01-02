@@ -19,8 +19,12 @@ public:
     const std::string& getPassword() const;
     const std::string& getDateCreated() const;
     
+    void viewProfile() const;
+    
     void setUsername(const std::string& newUsername);
     void setPassword(const std::string& newPassword);
+    
+    std::shared_ptr<User>getSharedPtr() const;
     
 private:
     std::string username;

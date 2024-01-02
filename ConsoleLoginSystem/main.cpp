@@ -72,7 +72,7 @@ int main(int argc, const char * argv[]) {
     int choice;
 
     do {
-        choice =menu(usermanager);
+        choice = menu(usermanager);
     
         switch(choice){
             case 1:{
