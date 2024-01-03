@@ -11,20 +11,36 @@
 #include <fstream>
 #include <memory>
 
+UserManager::UserManager() : loggedInUser(nullptr){}
+
 void UserManager::registerUser(const std::string& username, const std::string& password){
+    std::cout << "Adding user to vector: " << username << std::endl;
     users.push_back(User(username,password));
+    std::cout << "Saving user data..." << std::endl;
     saveUserData();
+    std::cout << "User data saved." << std::endl;
+}
+
+void UserManager::logoutUser(){
+    loggedInUser = nullptr;
+    users.clear();
+    std::cout<<"User logged out.\n";
 }
 bool UserManager::loginUser(const std::string& username, const std::string& password){
     for(const auto& user : users){
+        std::cout << "Checking user: " << user.getUsername() << std::endl;
+        std::cout << "Expected password: " << user.getPassword() << std::endl;
         if(user.getUsername() == username && user.getPassword() == password){
-            //loggedInUser = std::make_shared<User>(user.getUsername(),user.getPassword());
+            loggedInUser = std::make_shared<User>(user);
+            //loggedInUser = &user;
             return true;
         }
     }
-    std::cout << "Login failed. User not found or incorrect password.\n";
-    //loggedInUser = nullptr;
-    return false;
+        
+        std::cout << "Login failed. User not found or incorrect password.\n";
+        loggedInUser = nullptr;
+        return false;
+    
 }
 void UserManager::saveUserData(){
     std::ofstream file("userDB.txt",std::ios::app);
@@ -37,6 +53,7 @@ void UserManager::saveUserData(){
     }else{
         std::cerr <<"Unable to open file for writing."<<std::endl;
     }
+    std::cout << "End of saveUserData method." << std::endl;
 }
 void UserManager::viewUserProfile(const std::string &username){
     for(const auto& user : users){

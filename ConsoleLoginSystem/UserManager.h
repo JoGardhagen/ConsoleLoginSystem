@@ -15,14 +15,18 @@
 
 class UserManager{
 public:
+    UserManager();
+    
     void registerUser(const std::string& username,const std::string& password);
-    bool loginUser(const std::string& username, const std::string& password);
+    //bool loginUser(const std::string& username, const std::string& password);
     void viewUserProfile(const std::string& username);
-    bool loginUser(const std::string& username,const std::string& password, std::shared_ptr<User>& loggedInUser);
+    bool loginUser(const std::string& username,const std::string& password);
+    void logoutUser();
     
 private:
     std::vector<User> users;
     void saveUserData();
+    std::shared_ptr<User> loggedInUser;
     
 };
 
