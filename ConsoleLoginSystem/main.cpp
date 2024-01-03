@@ -18,6 +18,10 @@ int menu(UserManager& usermanager){
     std::cout<<"3: Exit\n";
     std::cout<<"Enter your choice:";
     std::cin>>choice;
+    
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    
     return choice;
 }
 

@@ -14,11 +14,16 @@
 UserManager::UserManager() : loggedInUser(nullptr){}
 
 void UserManager::registerUser(const std::string& username, const std::string& password){
-    std::cout << "Adding user to vector: " << username << std::endl;
-    users.push_back(User(username,password));
-    std::cout << "Saving user data..." << std::endl;
-    saveUserData();
-    std::cout << "User data saved." << std::endl;
+    if (!username.empty() && !password.empty()) {
+        std::cout << "Adding user to vector: " << username << std::endl;
+        users.push_back(User(username,password));
+        std::cout << "Saving user data..." << std::endl;
+        saveUserData();
+        std::cout << "User data saved." << std::endl;
+    }else {
+        std::cout << "Invalid input. User not registered." << std::endl;
+    }
+    
 }
 
 void UserManager::logoutUser(){
@@ -27,7 +32,24 @@ void UserManager::logoutUser(){
     std::cout<<"User logged out.\n";
 }
 bool UserManager::loginUser(const std::string& username, const std::string& password){
-    for(const auto& user : users){
+    std::ifstream file("userDB.txt");
+    if(!file.is_open()){
+        std::cerr<<"Unable to open userDB.txt for reading. \n";
+        return false;
+    }
+    
+    std::string storedUsername,storedPassWord,storedDateCreated;
+    while(file>>storedUsername>>storedPassWord>>storedDateCreated){
+        if(storedUsername == username && storedPassWord==password){
+            loggedInUser = std::make_shared<User>(storedUsername,storedPassWord);
+            file.close();
+            return true;
+        }
+    }
+    
+    
+    
+    /*for(const auto& user : users){
         std::cout << "Checking user: " << user.getUsername() << std::endl;
         std::cout << "Expected password: " << user.getPassword() << std::endl;
         if(user.getUsername() == username && user.getPassword() == password){
@@ -35,7 +57,7 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
             //loggedInUser = &user;
             return true;
         }
-    }
+    }*/
         
         std::cout << "Login failed. User not found or incorrect password.\n";
         loggedInUser = nullptr;
@@ -46,7 +68,9 @@ void UserManager::saveUserData(){
     std::ofstream file("userDB.txt",std::ios::app);
     if(file.is_open()){
         for(const auto& user :users){
-            file << user.getUsername()<< " " << user.getPassword()<<" "<<user.getDateCreated()<<"\n";
+            if (!user.getUsername().empty() && !user.getPassword().empty()) {
+                file << user.getUsername()<< " " << user.getPassword()<<" "<<user.getDateCreated()<<"\n";
+            }
         }
         std::cout<<"User successfully registrated!"<<std::endl;
         file.close();
