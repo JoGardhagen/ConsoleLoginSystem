@@ -89,16 +89,25 @@ void UserManager::viewLoggInUserProfile(){
 std::shared_ptr<User> UserManager::getLoggedInUser() {
     return loggedInUser;
 }
-bool UserManager::changePassword(const std::string& newPassword){
-    if(loggedInUser != nullptr){
-        loggedInUser -> setPassword(newPassword);
-        //saveUserData();
-        std::cout<<"Password changed.\n";
-        return true;
+
+void UserManager::changePassword(const std::string& newPassword){
+    if(loggedInUser){
+        //for(auto& user : users){
+            std::cout << "Changing password for user: " << loggedInUser->getUsername() << std::endl;
+            loggedInUser->setPassword(newPassword);
+            //if(user.getUsername() == loggedInUser->getUsername()){
+                //user.setPassword(newPassword);
+                saveUserData();
+                std::cout<<"Password changed.\n";
+                //return;
     }else{
         std::cout<<"Didnt change. . .\n";
-        return false;
     }
+            
+    //}
+        
+        
+    
 }
 
 

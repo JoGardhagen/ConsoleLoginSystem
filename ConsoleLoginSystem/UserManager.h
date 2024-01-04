@@ -22,7 +22,7 @@ public:
     bool loginUser(const std::string& username,const std::string& password);
     void logoutUser();
     void viewLoggInUserProfile();
-    bool changePassword(const std::string& newPassword);
+    void changePassword(const std::string& newPassword);
     std::shared_ptr<User>getLoggedInUser();
     
 private:
