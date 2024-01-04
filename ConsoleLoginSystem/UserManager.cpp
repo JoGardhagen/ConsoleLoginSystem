@@ -73,7 +73,8 @@ void UserManager::saveUserData(){
     }
     std::cout << "End of saveUserData method." << std::endl;
 }
-void UserManager::viewUserProfile(const std::string &username){
+
+/*void UserManager::viewUserProfile(const std::string &username){
     for(const auto& user : users){
         if(user.getUsername()==username){
             user.viewProfile();
@@ -81,6 +82,16 @@ void UserManager::viewUserProfile(const std::string &username){
         }
     }
     
+}*/
+void UserManager::viewLoggInUserProfile(){
+    if(loggedInUser !=nullptr){
+        loggedInUser->viewProfile();
+    }else{
+        std::cout<<"No user is currently logged in.\n";
+    }
+}
+std::shared_ptr<User> UserManager::getLoggedInUser() {
+    return loggedInUser;
 }
 
 

@@ -22,6 +22,8 @@ public:
     void viewUserProfile(const std::string& username);
     bool loginUser(const std::string& username,const std::string& password);
     void logoutUser();
+    void viewLoggInUserProfile();
+    std::shared_ptr<User>getLoggedInUser();
     
 private:
     std::vector<User> users;

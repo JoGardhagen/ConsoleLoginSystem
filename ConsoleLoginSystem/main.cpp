@@ -39,6 +39,7 @@ void userPanel(UserManager& usermanager){
             switch (choice) {
                 case 1:
                     std::cout << "Viewing profile...\n";
+                    usermanager.viewLoggInUserProfile();
                     break;
                 case 2:
                     std::cout << "Changing password...\n";
