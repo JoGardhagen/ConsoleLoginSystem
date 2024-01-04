@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include <sstream>
 
 UserManager::UserManager() : loggedInUser(nullptr){}
 
@@ -37,21 +38,28 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
         std::cerr<<"Unable to open userDB.txt for reading. \n";
         return false;
     }
+    std::string line;
+    //std::string storedUsername,storedPassWord,storedDateCreated;
+    std::string storedUsername,storedPassWord;
     
-    std::string storedUsername,storedPassWord,storedDateCreated;
-    std::vector<User> matchingUsers;
-    
-    while(file>>storedUsername>>storedPassWord>>storedDateCreated){
-        if(storedUsername == username && storedPassWord==password){
-            matchingUsers.push_back(User(storedUsername,storedPassWord));
+    //while(file>>storedUsername>>storedPassWord>>storedDateCreated){
+    //while(file>>storedUsername>>storedPassWord){
+    while(std::getline(file,line)){
+        std::istringstream iss(line);
+        if(iss >>storedUsername >> storedPassWord){
+            std::cout << "Checking user: " << storedUsername << std::endl;
+            std::cout << "Expected password: " << storedPassWord << std::endl;
+            
+            storedPassWord.erase(std::remove_if(storedPassWord.begin(), storedPassWord.end(), ::isspace), storedPassWord.end());
+            if(storedUsername == username && storedPassWord==password){
+                loggedInUser = std::make_shared<User>(storedUsername,storedPassWord);
+                file.close();
+                return true;
+            }
         }
+        
     }
     file.close();
-    
-    if(!matchingUsers.empty()){
-        loggedInUser = std::make_shared<User>(matchingUsers[0]);
-        return true;
-    }
     
     std::cout << "Login failed. User not found or incorrect password.\n";
     loggedInUser = nullptr;
