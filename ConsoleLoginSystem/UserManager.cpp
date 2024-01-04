@@ -39,29 +39,23 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
     }
     
     std::string storedUsername,storedPassWord,storedDateCreated;
+    std::vector<User> matchingUsers;
+    
     while(file>>storedUsername>>storedPassWord>>storedDateCreated){
         if(storedUsername == username && storedPassWord==password){
-            loggedInUser = std::make_shared<User>(storedUsername,storedPassWord);
-            file.close();
-            return true;
+            matchingUsers.push_back(User(storedUsername,storedPassWord));
         }
     }
+    file.close();
     
+    if(!matchingUsers.empty()){
+        loggedInUser = std::make_shared<User>(matchingUsers[0]);
+        return true;
+    }
     
-    
-    /*for(const auto& user : users){
-        std::cout << "Checking user: " << user.getUsername() << std::endl;
-        std::cout << "Expected password: " << user.getPassword() << std::endl;
-        if(user.getUsername() == username && user.getPassword() == password){
-            loggedInUser = std::make_shared<User>(user);
-            //loggedInUser = &user;
-            return true;
-        }
-    }*/
-        
-        std::cout << "Login failed. User not found or incorrect password.\n";
-        loggedInUser = nullptr;
-        return false;
+    std::cout << "Login failed. User not found or incorrect password.\n";
+    loggedInUser = nullptr;
+    return false;
     
 }
 void UserManager::saveUserData(){
