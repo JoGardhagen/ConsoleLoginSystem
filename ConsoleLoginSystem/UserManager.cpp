@@ -39,16 +39,13 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
         return false;
     }
     std::string line;
-    //std::string storedUsername,storedPassWord,storedDateCreated;
     std::string storedUsername,storedPassWord;
     
-    //while(file>>storedUsername>>storedPassWord>>storedDateCreated){
-    //while(file>>storedUsername>>storedPassWord){
     while(std::getline(file,line)){
         std::istringstream iss(line);
         if(iss >>storedUsername >> storedPassWord){
-            std::cout << "Checking user: " << storedUsername << std::endl;
-            std::cout << "Expected password: " << storedPassWord << std::endl;
+            //std::cout << "Checking user: " << storedUsername << std::endl;
+            //std::cout << "Expected password: " << storedPassWord << std::endl;
             
             storedPassWord.erase(std::remove_if(storedPassWord.begin(), storedPassWord.end(), ::isspace), storedPassWord.end());
             if(storedUsername == username && storedPassWord==password){
@@ -82,15 +79,6 @@ void UserManager::saveUserData(){
     std::cout << "End of saveUserData method." << std::endl;
 }
 
-/*void UserManager::viewUserProfile(const std::string &username){
-    for(const auto& user : users){
-        if(user.getUsername()==username){
-            user.viewProfile();
-            return;
-        }
-    }
-    
-}*/
 void UserManager::viewLoggInUserProfile(){
     if(loggedInUser !=nullptr){
         loggedInUser->viewProfile();
@@ -100,6 +88,17 @@ void UserManager::viewLoggInUserProfile(){
 }
 std::shared_ptr<User> UserManager::getLoggedInUser() {
     return loggedInUser;
+}
+bool UserManager::changePassword(const std::string& newPassword){
+    if(loggedInUser != nullptr){
+        loggedInUser -> setPassword(newPassword);
+        //saveUserData();
+        std::cout<<"Password changed.\n";
+        return true;
+    }else{
+        std::cout<<"Didnt change. . .\n";
+        return false;
+    }
 }
 
 

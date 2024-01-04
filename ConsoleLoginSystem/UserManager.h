@@ -18,11 +18,11 @@ public:
     UserManager();
     
     void registerUser(const std::string& username,const std::string& password);
-    //bool loginUser(const std::string& username, const std::string& password);
     void viewUserProfile(const std::string& username);
     bool loginUser(const std::string& username,const std::string& password);
     void logoutUser();
     void viewLoggInUserProfile();
+    bool changePassword(const std::string& newPassword);
     std::shared_ptr<User>getLoggedInUser();
     
 private:

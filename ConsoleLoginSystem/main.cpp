@@ -26,15 +26,19 @@ int menu(UserManager& usermanager){
 }
 
 void userPanel(UserManager& usermanager){
+    //bool loggedIn = true;
     int choice;
-    bool loggedIn = true;
+    
     do {
+            std::string newPassword;
             std::cout << "\nDashboard:\n";
             std::cout << "1. View Profile\n";
             std::cout << "2. Change Password\n";
             std::cout << "3. Logout\n";
             std::cout << "Enter your choice: ";
             std::cin >> choice;
+            //std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
             switch (choice) {
                 case 1:
@@ -42,12 +46,16 @@ void userPanel(UserManager& usermanager){
                     usermanager.viewLoggInUserProfile();
                     break;
                 case 2:
-                    std::cout << "Changing password...\n";
+                    std::cout << "Enter a new password: ";
+                    //std::string newPassword;
+                    std::cin >> newPassword;
+                    //std::getline(std::cin, newPassword);
+                    usermanager.changePassword(newPassword);
                     break;
                 case 3:
                     std::cout << "Logging out...\n";
                     usermanager.logoutUser();
-                    loggedIn = false;
+                    //loggedIn = false;
                     break;
                 default:
                     std::cout << "Invalid choice. Please try again.\n";
