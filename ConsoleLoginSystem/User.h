@@ -16,6 +16,8 @@ class User {
 public:
     User(const std::string& username,const std::string& password);
     
+    User(const std::string& username, const std::string& password, time_t dateCreated);
+    
     const std::string& getUsername() const;
     const std::string& getPassword() const;
     //const std::string& getDateCreated() const;

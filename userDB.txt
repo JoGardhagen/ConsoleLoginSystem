@@ -1,8 +1,7 @@
-gurka gurka Tue Jan  2 14:40:06 2024
-root root Wed Jan  3 16:32:26 2024
-banan banan Thu Jan  4 15:23:06 2024
-ho ho Thu Jan  4 18:16:36 2024
-hu hu Æ
+gurka bajs 1704202806
+root root  	1704295386
+banan banan 1704378206
+ho ho 1704388596
 fuu c 1704473867
 duh duh 1704474032
 x x 1704475804

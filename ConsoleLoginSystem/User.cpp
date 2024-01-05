@@ -9,6 +9,9 @@
 #include <ctime>
 #include <iostream>
 
+User::User(const std::string& username, const std::string& password, time_t dateCreated)
+    : username(username), password(password), dateCreated(dateCreated) {}
+
 User::User(const std::string& username,const std::string& password) 
     : username(username), password(password){
         //time_t now = time(0);

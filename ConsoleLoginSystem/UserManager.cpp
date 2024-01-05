@@ -39,17 +39,28 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
         return false;
     }
     std::string line;
-    std::string storedUsername,storedPassWord;
+    std::string storedUsername,storedPassWord ,storedDateCreated;
     
     while(std::getline(file,line)){
         std::istringstream iss(line);
-        if(iss >>storedUsername >> storedPassWord){
+        if(iss >>storedUsername >> storedPassWord>> storedDateCreated){
             storedPassWord.erase(std::remove_if(storedPassWord.begin(), storedPassWord.end(), ::isspace), storedPassWord.end());
-            if(storedUsername == username && storedPassWord==password){
-                loggedInUser = std::make_shared<User>(storedUsername,storedPassWord);
-                file.close();
-                return true;
-            }
+            try {
+                        time_t dateCreated = std::stol(storedDateCreated);
+                        // Fortsätt med övrig kod...
+                if(storedUsername == username && storedPassWord==password){
+                    loggedInUser = std::make_shared<User>(storedUsername,storedPassWord ,dateCreated);
+                    file.close();
+                    return true;
+                }
+                    } catch (const std::invalid_argument& e) {
+                        std::cerr << "Invalid argument: " << e.what() << "\n";
+                    } catch (const std::out_of_range& e) {
+                        std::cerr << "Out of range: " << e.what() << "\n";
+                    }
+            //time_t dateCreated = std::stol(storedDateCreated);
+            
+            
         }
         
     }
