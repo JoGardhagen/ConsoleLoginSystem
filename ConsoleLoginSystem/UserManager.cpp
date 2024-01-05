@@ -46,8 +46,7 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
         if(iss >>storedUsername >> storedPassWord>> storedDateCreated){
             storedPassWord.erase(std::remove_if(storedPassWord.begin(), storedPassWord.end(), ::isspace), storedPassWord.end());
             try {
-                        time_t dateCreated = std::stol(storedDateCreated);
-                        // Fortsätt med övrig kod...
+                time_t dateCreated = std::stol(storedDateCreated);
                 if(storedUsername == username && storedPassWord==password){
                     loggedInUser = std::make_shared<User>(storedUsername,storedPassWord ,dateCreated);
                     file.close();
