@@ -10,6 +10,7 @@
 
 
 #include <string>
+#include <ctime>
 
 class User {
 public:
@@ -17,7 +18,8 @@ public:
     
     const std::string& getUsername() const;
     const std::string& getPassword() const;
-    const std::string& getDateCreated() const;
+    //const std::string& getDateCreated() const;
+    time_t getDateCreated() const;
     
     void viewProfile() const;
     
@@ -29,7 +31,8 @@ public:
 private:
     std::string username;
     std::string password;
-    std::string dateCreated;
+    time_t dateCreated;
+    //std::string dateCreated;
 };
 
 #endif /* User_h */

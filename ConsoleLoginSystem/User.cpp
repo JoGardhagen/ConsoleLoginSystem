@@ -11,8 +11,10 @@
 
 User::User(const std::string& username,const std::string& password) 
     : username(username), password(password){
-        time_t now = time(0);
-        dateCreated = ctime(&now);
+        //time_t now = time(0);
+        //dateCreated = ctime(&now);
+        //dateCreated = now;'
+        dateCreated = std::time(nullptr);
     }
 
 //Getter
@@ -23,9 +25,13 @@ const std::string& User::getUsername() const {
 const std::string& User::getPassword() const {
     return password;
 }
-const std::string& User::getDateCreated() const{
+time_t User::getDateCreated() const{
     return dateCreated;
 }
+/*{
+//const std::string& User::getDateCreated() const{
+    return dateCreated;
+}*/
 //Setter
 void User::setUsername(const std::string& newUsername){
     username = newUsername;
@@ -37,7 +43,13 @@ void User::viewProfile()const{
     std::cout<<"Profile details:\n";
     std::cout<<"Username: "<<getUsername()<<'\n';
     std::cout<<"Password: "<<getPassword()<<'\n';
-    std::cout<<"Creation Date: "<<getDateCreated()<<'\n';
+    //std::cout<<"Creation Date: "<<getDateCreated()<<'\n';
+    //std::cout<<"Creation Date: "<<getDateCreated()<<'\n';
+    std::tm* timeInfo = std::localtime(&dateCreated);
+    char buffer[80];
+    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeInfo);
+
+    std::cout << "Creation Date: " << buffer << '\n';
 }
 std::shared_ptr<User> User::getSharedPtr() const {
     return std::make_shared<User>(*this);

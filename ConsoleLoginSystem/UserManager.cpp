@@ -44,9 +44,6 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
     while(std::getline(file,line)){
         std::istringstream iss(line);
         if(iss >>storedUsername >> storedPassWord){
-            //std::cout << "Checking user: " << storedUsername << std::endl;
-            //std::cout << "Expected password: " << storedPassWord << std::endl;
-            
             storedPassWord.erase(std::remove_if(storedPassWord.begin(), storedPassWord.end(), ::isspace), storedPassWord.end());
             if(storedUsername == username && storedPassWord==password){
                 loggedInUser = std::make_shared<User>(storedUsername,storedPassWord);
@@ -90,50 +87,6 @@ std::shared_ptr<User> UserManager::getLoggedInUser() {
     return loggedInUser;
 }
 
-/*void UserManager::changePassword(const std::string& newPassword){
-    if(loggedInUser){
-        //for(auto& user : users){
-            std::cout << "Changing password for user: " << loggedInUser->getUsername() << std::endl;
-            loggedInUser->setPassword(newPassword);
-            //if(user.getUsername() == loggedInUser->getUsername()){
-                //user.setPassword(newPassword);
-                saveUserData();
-                std::cout<<"Password changed.\n";
-                //return;
-    }else{
-        std::cout<<"Didnt change. . .\n";
-    }
-}*/
-/*void UserManager::changePassword(const std::string& newPassword){
-    if(loggedInUser){
-        loggedInUser->setPassword(newPassword);
-        
-        std::ifstream inputFile("userDB.txt");
-        std::ofstream outoutFile("userDB_temp.txt");
-        
-        if(inputFile.is_open() && outoutFile.is_open()){
-            std::string username,password,dateCreated;
-            
-            while(inputFile>>username>>password>>dateCreated){
-                if (username==loggedInUser->getUsername()) {
-                    outoutFile<<loggedInUser->getUsername()<<" "<<newPassword<<" "<< loggedInUser->getDateCreated()<<"\n";
-                }else{
-                    outoutFile << username <<" "<< password <<" "<<dateCreated<<'\n';
-                }
-            }
-            inputFile.close();
-            outoutFile.close();
-            
-            std::remove("userDB.txt");
-            std::rename("userDB_temp.txt","userDB.txt");
-            std::cout<<"Password changed.\n";
-        }else{
-            std::cerr<<"Unable to open for read or write from or to files.\n";
-        }
-    }else{
-        std::cout<<"Not logged in, unable to change password.\n";
-    }
-}*/
 void UserManager::changePassword(const std::string& newPassword){
     if(loggedInUser != nullptr){
         std::ifstream inFile("userDB.txt");
