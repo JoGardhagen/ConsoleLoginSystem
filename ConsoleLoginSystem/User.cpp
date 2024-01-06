@@ -14,9 +14,6 @@ User::User(const std::string& username, const std::string& password, time_t date
 
 User::User(const std::string& username,const std::string& password) 
     : username(username), password(password){
-        //time_t now = time(0);
-        //dateCreated = ctime(&now);
-        //dateCreated = now;'
         dateCreated = std::time(nullptr);
     }
 
@@ -31,10 +28,6 @@ const std::string& User::getPassword() const {
 time_t User::getDateCreated() const{
     return dateCreated;
 }
-/*{
-//const std::string& User::getDateCreated() const{
-    return dateCreated;
-}*/
 //Setter
 void User::setUsername(const std::string& newUsername){
     username = newUsername;

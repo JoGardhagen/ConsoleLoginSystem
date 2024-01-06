@@ -20,7 +20,7 @@ public:
     
     const std::string& getUsername() const;
     const std::string& getPassword() const;
-    //const std::string& getDateCreated() const;
+
     time_t getDateCreated() const;
     
     void viewProfile() const;
@@ -34,7 +34,6 @@ private:
     std::string username;
     std::string password;
     time_t dateCreated;
-    //std::string dateCreated;
 };
 
 #endif /* User_h */

@@ -13,23 +13,36 @@
 #include <fstream>
 #include <memory>
 
-class UserManager{
+class UserManager {
 public:
+    // Constructor initializes the loggedInUser pointer to nullptr
     UserManager();
-    
-    void registerUser(const std::string& username,const std::string& password);
+
+    // Register a new user with the provided username and password
+    void registerUser(const std::string& username, const std::string& password);
+
+    // View the profile of a specific user by username
     void viewUserProfile(const std::string& username);
-    bool loginUser(const std::string& username,const std::string& password);
+
+    // Log in a user with the provided username and password
+    bool loginUser(const std::string& username, const std::string& password);
+
+    // Log out the currently logged-in user
     void logoutUser();
+
+    // View the profile of the currently logged-in user
     void viewLoggInUserProfile();
+
+    // Change the password of the currently logged-in user
     void changePassword(const std::string& newPassword);
-    std::shared_ptr<User>getLoggedInUser();
-    
+
+    // Get the shared pointer to the currently logged-in user
+    std::shared_ptr<User> getLoggedInUser();
+
 private:
-    std::vector<User> users;
-    void saveUserData();
-    std::shared_ptr<User> loggedInUser;
-    
+    std::vector<User> users;        // Vector to store registered users
+    void saveUserData();            // Save user data to a file
+    std::shared_ptr<User> loggedInUser; // Pointer to the currently logged-in user
 };
 
 #endif /* UserManager_h */
